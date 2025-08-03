@@ -20,10 +20,27 @@ const ContactPage = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const { name, email, message } = formData;
-    const subject = `Contact from ${name}`;
-    const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
-    const mailtoLink = `mailto:manumbadaudi@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailtoLink;
+    
+    // Send to WhatsApp
+    const whatsappMessage = `📧 *NEW CONTACT MESSAGE*
+
+👤 *Name:* ${name}
+📧 *Email:* ${email}
+
+💬 *Message:*
+${message}
+
+Please respond to this inquiry.`;
+
+    const whatsappLink = `https://wa.me/255752837561?text=${encodeURIComponent(whatsappMessage)}`;
+    window.open(whatsappLink, '_blank');
+    
+    // Reset form
+    setFormData({
+      name: '',
+      email: '',
+      message: ''
+    });
   };
 
   const handlePhoneClick = () => {
@@ -158,10 +175,11 @@ const ContactPage = () => {
               
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center"
+                className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-primary/25 flex items-center justify-center relative overflow-hidden group"
               >
-                <Send className="mr-2" size={20} />
-                Send Message
+                <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <Send className="mr-2 relative z-10 transition-transform duration-300 group-hover:scale-110" size={20} />
+                <span className="relative z-10">Send Message</span>
               </button>
             </form>
           </div>

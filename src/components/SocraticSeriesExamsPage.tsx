@@ -79,14 +79,16 @@ const SocraticSeriesExamsPage = () => {
     e.preventDefault();
     const { schoolName, contactPerson, phoneNumber, email, numberOfStudents } = formData;
     
-    const message = `*EXAM REGISTRATION REQUEST*\n\n` +
-      `Series: ${selectedSeries}\n` +
-      `School Name: ${schoolName}\n` +
-      `Contact Person: ${contactPerson}\n` +
-      `Phone Number: ${phoneNumber}\n` +
-      `Email: ${email}\n` +
-      `Number of Students: ${numberOfStudents}\n\n` +
-      `Please process our registration for the ${selectedSeries}.`;
+    const message = `📝 *EXAM REGISTRATION REQUEST*
+
+🎯 *Series:* ${selectedSeries}
+🏫 *School Name:* ${schoolName}
+👤 *Contact Person:* ${contactPerson}
+📱 *Phone Number:* ${phoneNumber}
+📧 *Email:* ${email}
+👥 *Number of Students:* ${numberOfStudents}
+
+Please process our registration for the ${selectedSeries}.`;
 
     const whatsappUrl = `https://wa.me/255752837561?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
@@ -161,9 +163,10 @@ const SocraticSeriesExamsPage = () => {
 
                 <button
                   onClick={() => handleRegister(exam.title)}
-                  className="w-full mt-6 px-4 py-2 rounded-lg font-medium transition-colors bg-green-600 hover:bg-green-700 text-white"
+                  className="w-full mt-6 px-4 py-2 rounded-lg font-medium transition-all duration-300 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground transform hover:scale-105 hover:shadow-lg hover:shadow-primary/25 relative overflow-hidden group"
                 >
-                  Register Now
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <span className="relative z-10">Register Now</span>
                 </button>
               </div>
             </div>
@@ -272,9 +275,10 @@ const SocraticSeriesExamsPage = () => {
                 </Button>
                 <Button
                   type="submit"
-                  className="flex-1 bg-green-600 hover:bg-green-700"
+                  className="flex-1 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-primary/25 relative overflow-hidden group"
                 >
-                  Send to WhatsApp
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <span className="relative z-10">Send to WhatsApp</span>
                 </Button>
               </div>
             </form>

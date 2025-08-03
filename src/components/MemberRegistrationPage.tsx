@@ -93,14 +93,17 @@ WhatsApp Group: ${formData.inWhatsAppGroup}`;
 
       // Send WhatsApp notification
       try {
-        const whatsappMessage = `🎓 New TASSA Member Registration:
-👤 Name: ${formData.fullName}
-📱 Phone: ${formData.phoneNumber}
-📍 Location: ${formData.location}
-🏫 School: ${formData.schoolName}
-💬 In WhatsApp Group: ${formData.inWhatsAppGroup}`;
+        const whatsappMessage = `🎓 *NEW TASSA MEMBER REGISTRATION*
 
-        const whatsappLink = `https://wa.me/?text=${encodeURIComponent(whatsappMessage)}`;
+👤 *Name:* ${formData.fullName}
+📱 *Phone:* ${formData.phoneNumber}
+📍 *Location:* ${formData.location}
+🏫 *School:* ${formData.schoolName}
+💬 *In WhatsApp Group:* ${formData.inWhatsAppGroup}
+
+Please process this registration request.`;
+
+        const whatsappLink = `https://wa.me/255752837561?text=${encodeURIComponent(whatsappMessage)}`;
         window.open(whatsappLink, '_blank');
       } catch (whatsappError) {
         console.log('WhatsApp notification failed:', whatsappError);
@@ -269,17 +272,18 @@ WhatsApp Group: ${formData.inWhatsAppGroup}`;
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-primary hover:bg-primary/90 disabled:bg-primary/50 text-primary-foreground font-bold py-4 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 disabled:transform-none flex items-center justify-center"
+              className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 disabled:from-primary/50 disabled:to-secondary/50 text-primary-foreground font-bold py-4 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-primary/25 disabled:transform-none disabled:shadow-none flex items-center justify-center relative overflow-hidden group"
             >
+              <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               {isSubmitting ? (
                 <>
                   <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-primary-foreground mr-2"></div>
-                  Submitting...
+                  <span className="relative z-10">Submitting...</span>
                 </>
               ) : (
                 <>
-                  <Mail className="h-5 w-5 mr-2" />
-                  Register Now
+                  <Mail className="h-5 w-5 mr-2 relative z-10 transition-transform duration-300 group-hover:scale-110" />
+                  <span className="relative z-10">Register Now</span>
                 </>
               )}
             </button>
